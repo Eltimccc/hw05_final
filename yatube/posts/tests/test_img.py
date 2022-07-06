@@ -9,7 +9,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django.contrib.auth import get_user_model
-from django import forms
+
 
 # Создаем временную папку для медиа-файлов;
 # на момент теста медиа папка будет переопределена
@@ -125,7 +125,7 @@ class PostsImgTests(TestCase):
         )
         post_image_g = Post.objects.first().image
         self.assertEqual(post_image_g, post_image_g)
-        
+
     def test_profile_img(self):
         small_gif = (
             b'\x47\x49\x46\x38\x39\x61\x02\x00'
