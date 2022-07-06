@@ -1,6 +1,7 @@
 # models.py
 from django.db import models
 from django.contrib.auth import get_user_model
+from core.models import CreatedModel
 
 User = get_user_model()
 
@@ -31,6 +32,7 @@ class Post(models.Model):
         upload_to='posts/',
         blank=True
     )
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         # выводим текст поста

@@ -24,7 +24,11 @@ ALLOWED_HOSTS = [
 ]
 POSTS_IN_PAGE = 10
 POSTS_PAG_TEST = 13
-
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
 
 # Application definition
 
