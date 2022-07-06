@@ -126,6 +126,8 @@ class PostsImgTests(TestCase):
         post_image_g = Post.objects.first().image
         self.assertEqual(post_image_g, post_image_g)
 
+        
+
     # def test_profile_img(self):
     #    self.authorized_client.get('posts:profile',
     #                               kwargs={'username': self.author})
