@@ -66,3 +66,10 @@ class Comment(models.Model):
         help_text='Введите текст комента'
     )
     created = models.DateTimeField('date published', auto_now_add=True)
+
+
+class Follow(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name="follоwer")
+    author = models.ForeignKey(User, on_delete=models.CASCADE,
+                               related_name="follоwing")

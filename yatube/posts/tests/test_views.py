@@ -62,7 +62,7 @@ class PaginatorViewsTest(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.author = User.objects.create_user(username='Author')
+        cls.author = User.objects.create_user(username='Ss')
         cls.group = Group.objects.create(
             title='Тестовая группа',
             slug='test-slug',

@@ -4,9 +4,10 @@
 {% block header %}Последние обновления на сайте{% endblock %}
 {% load cache %}
 {% block content %}
-{% cache 500 index_page content request.user.username %}
+{% cache 20 index_page content request.user.username %}
+{% include 'posts/includes/switcher.html' %}
   {% for post in page_obj %}
-  {% include 'posts/includes/post_list.html' %}
+  {% include 'posts/includes/post_list.html' with post=post %}
     {% if post.group %}   
       <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
     {% endif %}
@@ -14,4 +15,5 @@
   {% endfor %}
   {% include 'includes/paginator.html' %}
 {% endcache %}
-{% endblock %} 
+{% endblock %}
+

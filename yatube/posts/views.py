@@ -2,14 +2,13 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.shortcuts import render
+from django.urls import reverse
 
-from .models import Post, Group, User
+from .models import Post, Group, User, Follow
 from .forms import PostForm, CommentForm
 from yatube.settings import POSTS_IN_PAGE
-from django.views.decorators.cache import cache_page
 
 
-@cache_page(15)
 def index(request):
     posts = Post.objects.all()
     paginator = Paginator(posts, POSTS_IN_PAGE)
@@ -103,3 +102,36 @@ def add_comment(request, post_id):
         return redirect('posts:post_detail', post_id=post_id)
     return render(request, 'includes/comment.html',
                   {'form': form, 'post': post})
+
+
+@login_required
+def follow_index(request):
+    posts = Post.objects.filter(author=request.user)
+    paginator = Paginator(posts, POSTS_IN_PAGE)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'post_count': posts.count(),
+        'page_obj': page_obj,
+    }
+    return render(request, 'posts/follow.html', context)
+
+@login_required
+def profile_follow(request, username):
+    user = request.user
+    author = User.objects.get(username=username)
+    follower = Follow.objects.filter(user=user, author=author)
+    if not follower.exists():
+        Follow.objects.create(user=user, author=author)
+    else:
+        return redirect(reverse('index'))
+    return redirect(reverse('posts:profile', args=[author]))
+        
+
+@login_required
+def profile_unfollow(request, username):
+    author = get_object_or_404(User, username=username)
+    is_follower = Follow.objects.filter(user=request.user, author=author)
+    if is_follower.exists():
+        is_follower.delete()
+    return redirect('posts:profile', username=author)
