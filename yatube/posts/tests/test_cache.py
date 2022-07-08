@@ -7,6 +7,7 @@ from posts.models import Post, User
 
 User = get_user_model()
 
+
 class CacheTest(TestCase):
     @classmethod
     def setUpClass(cls):
