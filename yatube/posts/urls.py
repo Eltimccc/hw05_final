@@ -25,7 +25,7 @@ urlpatterns = [
          views.post_edit, name='update_post'),
     path('posts/<int:post_id>/comment/',
          views.add_comment, name='add_comment'),
-    path('posts/follow/', views.follow_index, name='follow_index'),
+    path('/follow/', views.follow_index, name='follow_index'),
     path(
         'profile/<str:username>/follow/',
         views.profile_follow,
