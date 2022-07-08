@@ -42,8 +42,6 @@ def profile(request, username):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     # Здесь код запроса к модели и создание словаря контекста
-    user = author
-    follower = Follow.objects.filter(user=user, author=author)
     if request.user.is_authenticated:
         following = Follow.objects.filter(
             user=request.user, author=author
