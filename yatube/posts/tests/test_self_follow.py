@@ -1,9 +1,7 @@
-from urllib import request
 from django.test import Client, TestCase
-from posts.models import Group, Post, User
+from posts.models import Post, User
 from django.contrib.auth import get_user_model
-from posts.models import Post, Group, User, Follow
-from django.urls import reverse
+from posts.models import Post, User, Follow
 
 
 User = get_user_model()
