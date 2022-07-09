@@ -16,7 +16,6 @@ class FollowTests(TestCase):
             author=cls.user,
             text='Тестовая пост for follow',
         )
-        cls.author = cls.user
 
     def setUp(self):
         self.user_1 = User.objects.create_user(username='follower')
@@ -29,5 +28,5 @@ class FollowTests(TestCase):
         following = self.authorized_client.get('posts:profile_follow',
                                                kwargs={'username': self.user})
         follows = Follow.objects.filter(user=self.user,
-                                        author=self.author)
+                                        author=self.user)
         self.assertTrue(following, follows)
