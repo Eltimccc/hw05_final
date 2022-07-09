@@ -29,5 +29,6 @@ class FollowTests(TestCase):
             user=self.user, author=self.author)
         self.assertTrue(follower, followers)
         self.check_url(self.user_1,
-                       f'/profile/{self.user.username}/follow', '/profile/<username>/follow/')
+                       f'/profile/{self.user.username}/follow',
+                       '/profile/<username>/follow/')
         assert Follow.objects.follower.count() == 1
