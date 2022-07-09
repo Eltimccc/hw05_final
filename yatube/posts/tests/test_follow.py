@@ -2,6 +2,7 @@ from django.test import Client, TestCase
 from posts.models import Post, User
 from django.contrib.auth import get_user_model
 from posts.models import Post, User, Follow
+from django.urls import reverse
 
 
 User = get_user_model()
@@ -24,11 +25,9 @@ class FollowTests(TestCase):
         self.authorized_client.force_login(self.user_1)
 
     def test_folow(self):
-        followers = Follow.objects.all()
-        follower = Follow.objects.create(
+        allobj = Follow.objects.all()
+        allobj.delete()
+        Follow.objects.create(
             user=self.user, author=self.author)
-        self.assertTrue(follower, followers)
-        self.check_url(self.user_1,
-                       f'/profile/{self.user.username}/follow',
-                       '/profile/<username>/follow/')
-        assert Follow.objects.follower.count() == 1
+        following = Follow.objects.get(user=self.user, author=self.author)
+        self.assertTrue(following, allobj)
