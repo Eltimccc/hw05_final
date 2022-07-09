@@ -2,7 +2,6 @@ from django.test import Client, TestCase
 from posts.models import Post, User
 from django.contrib.auth import get_user_model
 from posts.models import Post, User, Follow
-from django.urls import reverse
 
 
 User = get_user_model()
