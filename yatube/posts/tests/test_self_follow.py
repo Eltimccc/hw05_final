@@ -8,6 +8,7 @@ from django.urls import reverse
 
 User = get_user_model()
 
+
 class FollowSelfTests(TestCase):
     @classmethod
     def setUpClass(cls):
@@ -25,6 +26,6 @@ class FollowSelfTests(TestCase):
 
     def test_folow(self):
         followers = Follow.objects.all()
-        follower_self = Follow.objects.create(user=self.user, author=self.author)
+        follower_self = Follow.objects.create(
+            user=self.user, author=self.author)
         self.assertNotEqual(follower_self, followers)
-
