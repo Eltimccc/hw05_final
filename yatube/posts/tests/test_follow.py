@@ -21,12 +21,13 @@ class FollowTests(TestCase):
         self.user_1 = User.objects.create_user(username='follower')
         self.authorized_client = Client()
         self.authorized_client.force_login(self.user_1)
+        self.another = Client()
 
     def test_folow(self):
-        allobj = Follow.objects.all()
-        allobj.delete()
+        Follow.objects.all().delete()
         following = self.authorized_client.get('posts:profile_follow',
-                                               kwargs={'username': self.user})
+                                               kwargs={'username': self.user.username})
         follows = Follow.objects.filter(user=self.user,
                                         author=self.user)
         self.assertTrue(following, follows)
+        self.assertEqual(Follow.objects.all().count(), 0)
