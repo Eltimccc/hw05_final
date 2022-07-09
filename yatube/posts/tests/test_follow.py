@@ -27,4 +27,4 @@ class FollowTests(TestCase):
         followers = Follow.objects.all()
         follower = Follow.objects.create(
             user=self.user, author=self.author)
-        self.assertEqual(follower, followers[0])
+        self.assertTrue(follower, followers)
