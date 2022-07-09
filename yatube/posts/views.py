@@ -131,7 +131,7 @@ def profile_follow(request, username):
     user = request.user
     author = User.objects.get(username=username)
     follower = Follow.objects.filter(user=user, author=author)
-    if not follower.exists() and follower == request.user:
+    if not follower.exists() and author != request.user:
         Follow.objects.create(user=user, author=author)
     else:
         return redirect(reverse('index'))
