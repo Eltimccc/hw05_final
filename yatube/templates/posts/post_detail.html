@@ -18,8 +18,7 @@
                 <br>   
                 <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы
                 </a><br>
-                <a href="{% url 'posts:update_post' post.pk %}">Редактировать постец</a>
-                {% endif %} 
+                {% endif %}
               </li>
               <li class="list-group-item">
                 Автор: {{ post.author.get_full_name }}
@@ -39,6 +38,19 @@
           <p>
             {{ post.text |linebreaks }}
           </p>
+          {% if request.user == post.author  %}
+            {% if request.user.is_authenticated %}
+          <p class="nav-item"> 
+            <a class="btn btn-primary
+            {% if request.resolver_match.view_name  == 'posts:post_create' %}
+                active
+              {% endif %}"
+              href="{% url 'posts:update_post' post.pk %}">
+            Редактировать запись
+          </a>
+            {% endif %}
+          {% endif %}
+        </p>
           <p>
             {% include 'includes/comment.html' %}
           </p>

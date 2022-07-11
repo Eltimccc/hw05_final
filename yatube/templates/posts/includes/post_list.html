@@ -3,7 +3,11 @@
   <ul>
     <li>
       Автор: {{ post.author.get_full_name }} 
-      <a href="{% url 'posts:profile' post.author %}">все посты пользователя</a>
+      <p>
+        <button type="button" class="btn btn-outline-info btn-sm">
+        <a href="{% url 'posts:profile' post.author %}">все посты пользователя</a>
+      </button>
+      </p>
     </li>
     <li>
       Дата публикации: {{ post.pub_date|date:"d E Y" }}

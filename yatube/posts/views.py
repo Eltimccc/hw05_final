@@ -42,12 +42,10 @@ def profile(request, username):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     # Здесь код запроса к модели и создание словаря контекста
-    if request.user.is_authenticated:
-        following = Follow.objects.filter(
-            user=request.user, author=author
-        ).exists()
-    else:
-        following = False
+    following = Follow.objects.filter(
+        user=request.user, author=author
+    ).exists()
+
     context = {
         'post_count': posts.count(),
         'page_obj': page_obj,
@@ -120,7 +118,6 @@ def follow_index(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
-        'posts': posts,
         'page_obj': page_obj,
     }
     return render(request, 'posts/follow.html', context)
