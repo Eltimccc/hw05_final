@@ -142,7 +142,7 @@ class PostPagesContextTests(TestCase):
             'text': forms.fields.CharField,
         }
         for value, expected in form_fields.items():
-            with self.subTest(value=value):
+            with self.(value=value):
                 form_field = response.context.get('form').fields.get(value)
                 form_f = response.context.get('form')
                 edit = response.context.get('is_edit')

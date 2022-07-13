@@ -33,10 +33,6 @@ class Post(models.Model):
     )
     created = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        # выводим текст поста
-        return self.text
-
     class Meta:
         ordering = ('-pub_date',)
         verbose_name = 'Пост'
