@@ -43,9 +43,9 @@
                   Дата публикации: {{ post.pub_date|date:"d E Y" }}
                 </li>
                 <button type="button" class="btn btn-outline-info btn-sm">
-                <a href="{% url 'posts:post_detail' post.pk %}">Подробная информация</a><br>
+                <a class='text-decoration-none' href="{% url 'posts:post_detail' post.pk %}">Подробная информация</a><br>
                 {% if post.group %}
-                  <a href="{% url 'posts:group_list' post.group.slug %}">записи группы {{ post.group.title }}</a>
+                  <a class='text-decoration-none' href="{% url 'posts:group_list' post.group.slug %}">записи группы {{ post.group.title }}</a>
                 </button>
                  {% endif %}
               </ul>

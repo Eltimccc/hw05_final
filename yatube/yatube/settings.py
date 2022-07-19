@@ -25,8 +25,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '[::1]',
     'testserver',
-    'www.eltimc.pythonanywhere.com',
-    'eltimc.pythonanywhere.com',
+    'www.Denel.pythonanywhere.com',
+    'Denel.pythonanywhere.com',
 ]
 POSTS_IN_PAGE = 10
 POSTS_PAG_TEST = 13
